@@ -4,10 +4,8 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Setter
 @Getter
@@ -25,5 +23,24 @@ public class DoctorEntity {
     private String gender;
     private String medicalCollege;
     private String password;
-    private boolean isActive;
+    private boolean isActive = true;
+    @Column(name = "created_by")
+    private String createdBy;
+    @Column(name = "created_on")
+    private LocalDateTime createdOn;
+    @Column(name = "updated_by")
+    private String updateBy;
+    @Column(name = "updated_on")
+    private LocalDateTime updatedOn;
+
+    @PrePersist
+    public void onCreate() {
+        this.createdOn = LocalDateTime.now();
+        this.createdBy = "system";
+    }
+    @PreUpdate
+    public  void onUpdate() {
+        this.updatedOn = LocalDateTime.now();
+        this.updateBy = "system";
+    }
 }

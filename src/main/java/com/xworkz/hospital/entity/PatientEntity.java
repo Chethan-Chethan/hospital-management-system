@@ -4,16 +4,15 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
 
 @Getter
 @Setter
 @ToString
 @Entity
+
+@Table(name = "patient_log")
 public class PatientEntity {
 
     @Id
@@ -28,4 +27,7 @@ public class PatientEntity {
     private String address;
     private String otp;
     private boolean isActive;
+
+    @OneToOne(mappedBy = "patientEntity", cascade = CascadeType.ALL, orphanRemoval = true)
+    private PatientAuditEntity auditEntity;
 }
