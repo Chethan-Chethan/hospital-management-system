@@ -11,6 +11,7 @@ import java.time.LocalDateTime;
 @Getter
 @ToString
 @Entity
+@Table(name = "doctor_info")
 public class DoctorEntity {
 
     @Id

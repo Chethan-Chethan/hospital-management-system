@@ -13,9 +13,9 @@ public class ReceptionistDto {
     private String name;
     private long phoneNumber;
     private String email;
-    private String designation;
+    private String qualification;
+    private String department;
     private String gender;
-    private String medicalCollege;
     private String password;
     private boolean isActive;
 }
